@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+    <appender name="log.console" class="org.apache.log4j.ConsoleAppender">
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="[%5p] %d{yyyy-MM-dd HH:mm:ss,SSS} (%C:%M) %m%n"/>
+        </layout>
+        <!-- 如果appender中的filter定义的 levelMin > levelMax ，则打印不出日志信息-->
+        <!--<filter class="org.apache.log4j.varia.LevelRangeFilter">
+            &lt;!&ndash; 打印日志的区间，优先看logger控制器 控制器的级别大于最大，
+                 控制器的warn>最大的info 则日志不输出；
+                 控制器info<最小warn  日志输出的是 最小至最大的区间
+                 控制器warn =最小warn =最大warm  日志输出的是warn
+
+                 总结下来应该是 打印的日志输出应该是 控制器的区间至最大的区间且交集
+             &ndash;&gt;
+            <param name="levelMin" value="debug"/>
+            <param name="levelMax" value="error"/>
+            <param name="AcceptOnMatch" value="true"/>
+        </filter>-->
+    </appender>
+    <appender name="log.file" class="org.apache.log4j.DailyRollingFileAppender">
+        <param name="File" value="F://logs/log.log"/>
+        <!-- 设置是否在重新启动服务时，在原有日志的基础添加新日志 -->
+        <param name="Append" value="true"/>
+        <param name="DatePattern" value="'.'yyyy-MM-dd"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="[%5p] %d{yyyy-MM-dd HH:mm:ss,SSS}(%C:%M) %m%n"/>
+        </layout>
+    </appender>
+    <!-- 当additivity="false"时，root中的配置就失灵了，不遵循缺省的继承机制-->
+    <logger name="cn.taoqi.dao" additivity="false">
+        <level value="info"/>
+        <appender-ref ref="log.console"/>
+        <appender-ref ref="log.file"/>
+    </logger>
+    <root>
+        <level value="debug"/>
+        <appender-ref ref="log.console"/>
+        <appender-ref ref="log.file"/>
+    </root>
+</log4j:configuration>
