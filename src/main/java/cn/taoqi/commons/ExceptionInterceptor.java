@@ -20,7 +20,7 @@ import java.util.Map;
  * @author:
  * @create: 2020-03-27 20:09
  **/
-@ControllerAdvice
+//@ControllerAdvice
 public class ExceptionInterceptor implements HandlerExceptionResolver {
     private static final Logger log = LoggerFactory.getLogger(ExceptionInterceptor.class);
     @Override

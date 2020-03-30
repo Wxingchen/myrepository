@@ -3,6 +3,8 @@ package cn.taoqi.controller;
 import cn.hutool.json.JSONUtil;
 import cn.taoqi.dto.CommonsException;
 import cn.taoqi.dto.Teacher;
+import cn.taoqi.dto.User;
+import cn.taoqi.emun.ExceptionEnum;
 import cn.taoqi.service.TeacherService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -34,7 +36,7 @@ public class TeacherController {
     public String getTeacher(@PathVariable("id") Integer id, Map<String,Object> map){
         log.info("getTeacher入参信息是：{}",id);
         if (id !=1){
-            throw  new CommonsException("id有误的描述","传值错误","9990");
+            throw  new CommonsException("id有误的描述",ExceptionEnum.PARAM_ERROR.getMsg(),ExceptionEnum.PARAM_ERROR.getCode());
         }
         Teacher teacher = teacherService.getTeacherById(id);
         log.info("teacher信息是：{}",JSONUtil.toJsonStr(teacher));
@@ -68,5 +70,6 @@ public class TeacherController {
         map.put("info",pageInfo);
         return "success";
     }
+
 
 }

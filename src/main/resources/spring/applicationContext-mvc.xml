@@ -22,7 +22,8 @@
         <property name="suffix" value=".jsp"></property>
     </bean>
     
-    <!-- 配置文件上传解析器-->
+    <!-- 配置文件上传解析器  如传统方式上传 必须注释这个解析器，
+    要不然 解析器解析request之后，后把request里的文件项清空-->
     <bean id ="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 
         <property name="defaultEncoding" value="uft-8"></property>
@@ -31,9 +32,26 @@
     </bean>
     <!--扫描静态资源 -->
     <mvc:default-servlet-handler/>
+    <!-- 同一异常处理-->
+    <bean class="cn.taoqi.commons.ExceptionInterceptor"/>
+
     <!-- 扫动态-->
+    <!--<mvc:annotation-driven conversion-service="conversionServiceFactoryBean"/>-->
     <mvc:annotation-driven/>
 
-    <bean class="cn.taoqi.commons.ExceptionInterceptor"/>
+   <!-- &lt;!&ndash; 注册自定义的类型转换器&ndash;&gt;
+    <bean id="conversionServiceFactoryBean" class="org.springframework.context.support.ConversionServiceFactoryBean">
+        <property name="converters">
+            &lt;!&ndash;<set>
+                <bean class="cn.taoqi.commons.StringToDateConverter"></bean>
+            </set>&ndash;&gt;
+            <bean class="cn.taoqi.commons.StringToDateConverter"></bean>
+        </property>
+    </bean>-->
+
+
+
+
+
 
 </beans>

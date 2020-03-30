@@ -31,12 +31,12 @@
     </appender>
     <!-- 当additivity="false"时，root中的配置就失灵了，不遵循缺省的继承机制-->
     <logger name="cn.taoqi.dao" additivity="false">
-        <level value="info"/>
+        <level value="error"/>
         <appender-ref ref="log.console"/>
         <appender-ref ref="log.file"/>
     </logger>
     <root>
-        <level value="debug"/>
+        <level value="error"/>
         <appender-ref ref="log.console"/>
         <appender-ref ref="log.file"/>
     </root>

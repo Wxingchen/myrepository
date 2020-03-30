@@ -180,6 +180,17 @@
           <artifactId>pagehelper</artifactId>
           <version>5.0.3</version>
       </dependency>
+      <!-- 跨服务器上传文件需要的依赖 sun公司提供-->
+      <dependency>
+          <groupId>com.sun.jersey</groupId>
+          <artifactId>jersey-core</artifactId>
+          <version>1.17.1</version>
+      </dependency>
+      <dependency>
+          <groupId>com.sun.jersey</groupId>
+          <artifactId>jersey-client</artifactId>
+          <version>1.17.1</version>
+      </dependency>
       <!-- 日志包-->
       <dependency>
           <groupId>log4j</groupId>
